@@ -1,20 +1,26 @@
+import React, { useState, useEffect } from 'react';
 import PostItem from './PostItem';
-import mona from '../assets/img/mona.jpeg';  // Importa la imagen desde la carpeta assets
-import pueblo from '../assets/img/pueblo.jpeg';
 
-const PostList = ({ posts }) => {
-  const first15Posts = posts.slice(0, 15);  // Muestra los primeros 15 posts
+const PostList = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    // Obtener los primeros 20 posts
+    fetch('https://jsonplaceholder.typicode.com/posts?_limit=20')
+      .then(response => response.json())
+      .then(data => setPosts(data));
+  }, []);
 
   return (
     <div className="post-list">
-      {first15Posts.map((post) => (
+      {posts.map(post => (
         <PostItem 
-          key={post.id}
-          title={post.title}
-          img={post.imgPath}  // Pasamos la ruta de la imagen
-          likes={post.likes}
-          comments={post.comments}
-          shares={post.shares}
+          key={post.id} 
+          id={post.id} 
+          title={post.title} 
+          body={post.body} 
+          likes={Math.floor(Math.random() * 300)} 
+          shares={Math.floor(Math.random() * 50)} 
         />
       ))}
     </div>

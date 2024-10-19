@@ -1,3 +1,5 @@
+// No usado
+
 import { configureStore } from '@reduxjs/toolkit';
 import postReducer from './postSlice';
 import commentReducer from './commentSlice';

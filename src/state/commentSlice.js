@@ -1,4 +1,4 @@
-// src/redux/commentSlice.js
+// No usado
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
