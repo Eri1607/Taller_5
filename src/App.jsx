@@ -144,7 +144,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>Lista de Publicaciones</h1>
+      <h1>Museo Louvre</h1>
       <PostList posts={posts} />
     </div>
   );
