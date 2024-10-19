@@ -1,25 +1,35 @@
-// src/components/PostModal.jsx
-import React from "react";
-import "./assets/styles/PostModal.css"; // Asegúrate de crear este archivo CSS para el estilo del modal.
+import { useState } from 'react';
 
-const PostModal = ({ post, comments, closeModal }) => {
+const CommentsModal = ({ comments, addComment }) => {
+  const [newComment, setNewComment] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newComment.trim()) {
+      addComment(newComment);
+      setNewComment('');
+    }
+  };
+
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <button className="close-btn" onClick={closeModal}>X</button>
-        <h3>{post.title}</h3>
-        <p>{post.body}</p>
-        <h4>Comentarios:</h4>
-        <ul>
-          {comments.map((comment) => (
-            <li key={comment.id}>
-              {comment.body} - <i>{comment.email}</i>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="comments-modal">
+      <h4>Comentarios</h4>
+      <ul>
+        {comments.map((comment, index) => (
+          <li key={index}>{comment}</li>
+        ))}
+      </ul>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          value={newComment} 
+          onChange={(e) => setNewComment(e.target.value)} 
+          placeholder="Agregar un comentario" 
+        />
+        <button type="submit">Comentar</button>
+      </form>
     </div>
   );
 };
 
-export default PostModal;
+export default CommentsModal;

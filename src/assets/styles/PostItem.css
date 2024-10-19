@@ -1,5 +1,5 @@
 .post {
-    background-color: #f0f0f0; /* Cambia el color de fondo como prefieras */
+    background-color: #f0f0f0; /* Cambia el color de fondo  */
     border-radius: 8px;
     padding: 16px;
     margin: 16px;
@@ -7,7 +7,7 @@
   }
   
   .post-image {
-    height: 200px; /* Ajusta la altura como necesites */
+    height: 200px; /* Ajusta la altura */
     background-color: #e0e0e0; /* Un color de fondo para representar la imagen */
     border-radius: 8px;
     margin-bottom: 12px;
