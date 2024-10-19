@@ -1,8 +1,10 @@
+// No usa
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-  return response.json();
+  const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+  return response.data;
 });
 
 const postSlice = createSlice({
@@ -10,6 +12,7 @@ const postSlice = createSlice({
   initialState: {
     posts: [],
     status: 'idle',
+    error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -21,8 +24,9 @@ const postSlice = createSlice({
         state.status = 'succeeded';
         state.posts = action.payload;
       })
-      .addCase(fetchPosts.rejected, (state) => {
+      .addCase(fetchPosts.rejected, (state, action) => {
         state.status = 'failed';
+        state.error = action.error.message;
       });
   },
 });
